@@ -21,6 +21,6 @@
         </style>
     </head>
     <body class="antialiased">
-        <h1>Loja de Livros</h1>
+        <h1>Loja de Livros - Produtos</h1>
     </body>
 </html>
