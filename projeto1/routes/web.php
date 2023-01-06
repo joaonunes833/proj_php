@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\LivrosController;
+use App\Http\Controllers\ProdutosController;
+use Faker\Provider\Lorem;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,10 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/produtos', function () {
-    return view('produtos');
-});
+Route::get('/produtos', [LivrosController::class,'index']);
 
-Route::get('/detalhes', function () {
-    return view('detalhes');
-});
+Route::get('/produtos/{id}', [LivrosController::class,'show']);
+
+// Route::get('/detalhes', function () {
+//     return view('detalhes');
+// });
