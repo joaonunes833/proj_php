@@ -22,14 +22,36 @@ class LivrosController extends Controller
         return view('createProduct');
     }
 
-    public function store()
+    public function store(Request $request)
     {
+        $validateData = $request->validate([
+            'nome' => 'required',
+            'url' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
         $nome = request('nome');
         $desc = request('desc');
-        $autorId = request('autorId');
-        $url = request('url');
         $preco = request('preco');
+        $autorId = request('autorId');
+
+        $url = "";
+        if ($request->has('url')){
+            $image = $request->file('url');
+
+
+            $iname = 'prod_'.time();
+            $folder='/img/livros/';
+            $fileName = $iname.'.'.$image->getClientOriginalExtension();
+            $filePath = $folder.$fileName;
+
+            $image->storeAs($folder, $fileName, 'public');
+            $url = "/storage/".$filePath;
+
+
+        }
+        
         $createdBy = request('createdBy');
+
 
         $livro = new Livro();
         $livro-> nome = $nome;
@@ -40,6 +62,7 @@ class LivrosController extends Controller
         $livro-> createdBy = $createdBy;
 
         $livro->save();
+        
 
         return redirect('/produtos/create')->with('mssg','Produto Criado');
     }

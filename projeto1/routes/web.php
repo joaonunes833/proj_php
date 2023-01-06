@@ -18,11 +18,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 
-Route::get('/produtos', [LivrosController::class,'index']);
-Route::get('/produtos/create', [LivrosController::class,'create']);
-Route::post('/produtos', [LivrosController::class,'store']);
-Route::get('/produtos/{id}', [LivrosController::class,'show']);
-Route::delete('/produtos/{id}',[LivrosController::class,'destroy']);
+Route::get('/produtos', [LivrosController::class,'index'])->name('products.index');
+Route::get('/produtos/create', [LivrosController::class,'create'])->name('products.create');
+Route::post('/produtos', [LivrosController::class,'store'])->name('products.store');
+Route::get('/produtos/{id}', [LivrosController::class,'show'])->name('products.show');
+Route::delete('/produtos/{id}',[LivrosController::class,'destroy'])->name('products.destroy');
 

@@ -12,7 +12,7 @@
         @else
             <h1>O livro que procura não existe.</h1>
         @endif
-        <form action="/produtos/{{$livro->id}}" method="POST">
+        <form action="{{route('products.destroy',$livro->id)}}" method="POST">
             @csrf
             @method('DELETE')
             <button>Eliminar Livro</button>

@@ -4,7 +4,14 @@
     <h1>Criar Produto</h1>
     <div class="detalhes">
         <p class="message">{{session('mssg')}}</p>
-        <form action="/produtos" method="POST">
+        <div class="error">
+            <ul>
+                @foreach ($erros->all() as $error)
+                    <li>{{$error}}</li>
+                @endforeach
+            </ul>
+        </div>
+        <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="name">Nome do Produto:</label>
             <input type="text" name="nome" id="nome">
@@ -16,7 +23,7 @@
             <input type="text" name="desc" id="desc">
             <br>
             <label for="url">Imagem:</label>
-            <input type="text" name="url" id="url">
+            <input type="file" name="url" id="url">
             <br>
             <label for="preco">Preço:</label>
             <input type="text" name="preco" id="preco">

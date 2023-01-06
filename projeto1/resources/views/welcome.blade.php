@@ -5,6 +5,6 @@
     <div class="intro">
         <img src="/img/loja.jpg" alt="loja/img"><br/>
         
-        <a href="/produtos">Ver Livros</a>
+        <a href={{route('products.index')}}>Ver Livros</a>
     </div>
 @endsection
