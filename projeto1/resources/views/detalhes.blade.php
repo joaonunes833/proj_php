@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('content')
     <h1>Detalhes</h1>
@@ -12,11 +12,13 @@
         @else
             <h1>O livro que procura não existe.</h1>
         @endif
+        @auth
         <form action="{{route('products.destroy',$livro->id)}}" method="POST">
             @csrf
             @method('DELETE')
             <button>Eliminar Livro</button>
         </form>
+        @endauth
         <a href="/produtos">VOLTAR</a>
     </div>
 @endsection

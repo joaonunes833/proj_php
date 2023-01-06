@@ -1,8 +1,7 @@
 <?php
 
 use App\Http\Controllers\LivrosController;
-use App\Http\Controllers\ProdutosController;
-use Faker\Provider\Lorem;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,11 +17,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+})->name('root');
 
 Route::get('/produtos', [LivrosController::class,'index'])->name('products.index');
-Route::get('/produtos/create', [LivrosController::class,'create'])->name('products.create');
-Route::post('/produtos', [LivrosController::class,'store'])->name('products.store');
+Route::get('/produtos/create', [LivrosController::class,'create'])->name('products.create')->middleware('auth');
+Route::post('/produtos', [LivrosController::class,'store'])->name('products.store')->middleware('auth');
 Route::get('/produtos/{id}', [LivrosController::class,'show'])->name('products.show');
-Route::delete('/produtos/{id}',[LivrosController::class,'destroy'])->name('products.destroy');
+Route::delete('/produtos/{id}',[LivrosController::class,'destroy'])->name('products.destroy')->middleware('auth');
 
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -1,16 +1,16 @@
-@extends('layouts.layout')
+@extends('layouts.app')
 
 @section('content')
     <h1>Criar Produto</h1>
     <div class="detalhes">
         <p class="message">{{session('mssg')}}</p>
-        <div class="error">
+        {{-- <div class="error">
             <ul>
                 @foreach ($erros->all() as $error)
                     <li>{{$error}}</li>
                 @endforeach
             </ul>
-        </div>
+        </div> --}}
         <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
             @csrf
             <label for="name">Nome do Produto:</label>
