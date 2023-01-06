@@ -21,9 +21,8 @@ Route::get('/', function () {
 });
 
 Route::get('/produtos', [LivrosController::class,'index']);
-
+Route::get('/produtos/create', [LivrosController::class,'create']);
+Route::post('/produtos', [LivrosController::class,'store']);
 Route::get('/produtos/{id}', [LivrosController::class,'show']);
+Route::delete('/produtos/{id}',[LivrosController::class,'destroy']);
 
-// Route::get('/detalhes', function () {
-//     return view('detalhes');
-// });

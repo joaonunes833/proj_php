@@ -12,6 +12,11 @@
         @else
             <h1>O livro que procura não existe.</h1>
         @endif
+        <form action="/produtos/{{$livro->id}}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button>Eliminar Livro</button>
+        </form>
         <a href="/produtos">VOLTAR</a>
     </div>
 @endsection
